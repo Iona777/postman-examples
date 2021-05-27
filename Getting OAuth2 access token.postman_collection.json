@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "c0f40e3c-40e8-464f-8354-2e4fe46d811e",
+		"name": "ArchiveLocal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sub folder",
+			"item": [
+				{
+					"name": "Get access token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Since response is a string not json, need to do this\r",
+									"pm.test(\"Get access token from string\", function () {\r",
+									"    var jsonData = pm.response;\r",
+									"    var string1 = jsonData.text().split('=')[1];\r",
+									"    var string2 = string1.split('&expires')[0];\r",
+									"    pm.environment.set(\"autoAccessToken\", string2);\r",
+									"});\r",
+									"\r",
+									"//s.split('a') breaks the string s into an array of strings where the break is the 'a' character.\r",
+									"//var s = banana;\r",
+									"//var a = s.split('a');\r",
+									"//a[0] is 'b', a[1] is 'n', a[2] is 'n'. \r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://auth.test.costcutter.com/cc-cas/oauth2.0/accessToken?grant_type=password&client_id=swagger&username=gregmcd&password=Freddie1",
+							"protocol": "https",
+							"host": [
+								"auth",
+								"test",
+								"costcutter",
+								"com"
+							],
+							"path": [
+								"cc-cas",
+								"oauth2.0",
+								"accessToken"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "password"
+								},
+								{
+									"key": "client_id",
+									"value": "swagger"
+								},
+								{
+									"key": "username",
+									"value": "gregmcd"
+								},
+								{
+									"key": "password",
+									"value": "Freddie1"
+								},
+								{
+									"key": "Token Name",
+									"value": "test1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fee Search Copy",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "password",
+									"value": "Freddie1",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "gregmcd",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{authHost}}/cc-cas/oauth2.0/accessToken",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "invoiceService Feb25D",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "body",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "swagger",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "password_credentials",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/activbill-invoice-service/fees/search/ZCRSH",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"activbill-invoice-service",
+								"fees",
+								"search",
+								"ZCRSH"
+							],
+							"query": [
+								{
+									"key": "fee",
+									"value": "phC",
+									"disabled": true
+								},
+								{
+									"key": "memberStatus",
+									"value": "c",
+									"disabled": true
+								},
+								{
+									"key": "region",
+									"value": "NOR",
+									"disabled": true
+								},
+								{
+									"key": "invoiced",
+									"value": "Y",
+									"disabled": true
+								},
+								{
+									"key": "memberCode",
+									"value": "235",
+									"disabled": true
+								},
+								{
+									"key": "memberShortName",
+									"value": "corq",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Invoice Local",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "invoiceService",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Freddie1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "gregmcd",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "swagger",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://auth.test.costcutter.com/cc-cas/oauth2.0/accessToken",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{baseURL}}/activbill-invoice-service/invoice/131",
+					"protocol": "http",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"activbill-invoice-service",
+						"invoice",
+						"131"
+					],
+					"query": [
+						{
+							"key": "memberCode",
+							"value": "84832",
+							"disabled": true
+						},
+						{
+							"key": "memberName",
+							"value": "COLUMBA EASTWOOD",
+							"disabled": true
+						},
+						{
+							"key": "supplierCode",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "supplierName",
+							"value": "CLOUGHBANE FARM FOODS LTD",
+							"disabled": true
+						},
+						{
+							"key": "invoiceType",
+							"value": "E",
+							"disabled": true
+						},
+						{
+							"key": "maxDate",
+							"value": "2020/9/30",
+							"disabled": true
+						},
+						{
+							"key": "minDate",
+							"value": "2020/9/01",
+							"disabled": true
+						},
+						{
+							"key": "weekNumber",
+							"value": "40",
+							"disabled": true
+						},
+						{
+							"key": "yearNumber",
+							"value": "2020",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invoice Local - EDI",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "Freddie2",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "invoiceService",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "gregmcd",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "swagger",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://auth.test.costcutter.com/cc-cas/oauth2.0/accessToken",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{baseURL}}/activbill-invoice-service/invoice/edi/3",
+					"protocol": "http",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"activbill-invoice-service",
+						"invoice",
+						"edi",
+						"3"
+					],
+					"query": [
+						{
+							"key": "memberCode",
+							"value": "84832",
+							"disabled": true
+						},
+						{
+							"key": "memberName",
+							"value": "COLUMBA EASTWOOD",
+							"disabled": true
+						},
+						{
+							"key": "supplierCode",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "supplierName",
+							"value": "CLOUGHBANE FARM FOODS LTD",
+							"disabled": true
+						},
+						{
+							"key": "invoiceType",
+							"value": "E",
+							"disabled": true
+						},
+						{
+							"key": "maxDate",
+							"value": "2020/9/30",
+							"disabled": true
+						},
+						{
+							"key": "minDate",
+							"value": "2020/9/01",
+							"disabled": true
+						},
+						{
+							"key": "weekNumber",
+							"value": "40",
+							"disabled": true
+						},
+						{
+							"key": "yearNumber",
+							"value": "2020",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
